@@ -1,0 +1,418 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+body {
+    margin: 0;
+    padding-bottom: 50px; // offset for footer
+}
+
+// navigation menu styling
+nav {
+     ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        .right { // used for components on right of nav bar
+            float: right;
+        }
+        li {
+            float: left;
+            a { // navigation link
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 16px;
+
+                &:hover {
+                    background-color: #111;
+                }
+            }
+            button {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 15.6px 16px;
+                background-color: transparent;
+                text-decoration: none;
+                border: none;
+                font-size: 16px;
+            }
+        }
+    }
+    
+    button:hover {
+        background-color: #111;
+    }
+}
+
+.loginInput { // login form
+    background-color: #333;
+    right: 0;
+    position: absolute;
+    padding: 10px 20px;
+    border-top: 2px solid black;
+
+    label { // text at start/for inputs
+        color: white;
+        float: left;
+        padding: 5px 10px;
+    }
+    input { // text input fields
+        width: 225px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: black;
+        color: white;
+        border: none;
+        padding-left: 10px;
+    }
+    button { // submit/cancel buttons
+        border: none;
+        width: 80px;
+        height: 40px;
+        margin-top: 10px;
+        font-size: 17px;
+        border-radius: 5px;
+        background-color: white;
+        color: #333;
+
+        &:hover {
+            color: white;
+            background-color: #333;
+            border: 1px solid white;
+        }
+    }
+}
+
+// table for authors/papers
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #000000;
+        color: white;
+    }
+    td {
+        padding: 8px;
+    }
+    tr {
+        &:nth-child(even) { // different colour for following rows
+            background-color: #f2f2f2;
+        }
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+}
+
+// WATCH/UNWATCH button styling and close button for modal
+.btnWatch, .close {
+    border: none;
+    padding: 3px;
+    text-align: center;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    width: 100px;
+    border-radius: 4px;
+}
+
+// styling for pressing the button to watch paper
+.WATCH {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+
+    &:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+}
+
+// styling for pressing the button to unwatch a paper
+.UNWATCH {
+    background-color: white;
+    color: black;
+    border: 2px solid #f44336;
+
+    &:hover {
+        background-color: #f44336;
+        color: white;
+    }
+}
+
+// close button styling
+.close {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    float: right;
+
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
+// Drop-downs when viewing a paper modal that opens up further content
+h3 {
+    background-color: rgb(65, 55, 55);
+    color: white;
+    padding: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    
+    .triDown {
+        float: right;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid white;
+    }
+
+    .triUp {
+        float: right;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid white;
+    }
+}
+
+.center {
+    text-align: center;
+}
+ 
+// cancel button for top right of modal
+.closeTopRight {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    border-radius: 5px;
+}
+  
+// smaller width for authors table as less content to display
+.tblAuthors {
+    width: 40%;
+}
+
+// selected paper when viewing authors attached to paper, so you know what paper your're viewing
+// overrides any current styling
+.selected {
+    background-color: yellow !important;
+    color: navy !important;
+}
+
+// hovering over the user settings
+.hoverSettings {
+    position: absolute;
+    background-color: #333;
+    width: 180px;
+
+    button {
+        width: 100%;
+    }
+}
+
+// error message
+.error {
+    color: red;
+    margin: 0;
+}
+
+// success message
+.success {
+    color: rgb(10, 92, 10);
+    margin: 0;
+}
+
+// circle loading image animation
+.loading {
+    animation-duration: 1s;
+    animation-name: loading-spin;
+    animation-iteration-count: infinite;
+    margin: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// inputs for the boxes on papers and authors pages
+.queryInput, select {
+    width: 300px;
+    padding: 8px 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+// spinning animation for the loading
+@keyframes loading-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+// affiliation information on modal put a box around and clear whitespace
+.affiliations {
+    border: 1px solid black;
+    padding: 10px;
+
+    p {
+        margin: 0;
+    }
+    h4 {
+        margin: 0;
+    }
+}
+
+// centering content for paperModal and home
+.home .paperModal {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// not found image used on error page
+.notFound {
+    width: 30%;
+    height: auto;
+}
+
+// change password form styling for contents
+.changePassword {
+    color: white;
+    text-align: center;
+
+    h2 {
+        text-align: center;
+    }
+    label {
+        padding: 5px 10px;
+        float: left;
+    }
+    input {
+        width: 225px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: black;
+        border: none;
+        color: white;
+        padding-left: 10px;
+    }
+    button {
+        width: 175px;
+        height: 40px;
+        margin-top: 10px;
+        font-size: 17px;
+        border-radius: 5px;
+        color: white;
+        background-color: #333;
+        border: 1px solid white;
+
+        &:hover {
+            color: #333;
+            background-color: white;
+            border: none;
+        }
+    }
+}
+
+// home page set image offset off nav and rounded corners
+.home {
+    img {
+        margin: 10px;
+        border-radius: 5px;
+    }
+}
+
+// fix footer at bottom of page and remove whitespace
+footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #333;
+    width: 100%;
+    color: white;
+    p {
+       margin: 8px; 
+    }
+}
+
+// screen for mobile/tablet
+@media screen and (max-width: 650px) {
+    // navigation put into drop down format
+    nav ul li.right,
+    nav ul li {
+      float: none;
+    }
+    // Login/Register or UserSettings and Logout be centered
+    button {
+        width: 100%;
+    }
+    // Size of home image to improve scrolling
+    img {
+        width: 80%;
+    }
+    // URL's stop them leading into whitespace as long URL (issue with the link for papers to the website)
+    a {
+        word-break: break-all;
+    }
+
+    // Center the register forms 
+    .loginInput {
+        position: relative;
+        // fix mess / make titles take full width so inputs are directly below
+        label {
+            width: 100%;
+            padding: 0;
+        }
+        
+    }
+    // make User Settings options relative so displays under the option
+    .hoverSettings {
+        position: relative;
+        width: 100%;
+    }
+  }
